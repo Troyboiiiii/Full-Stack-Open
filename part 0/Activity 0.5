@@ -1,1 +1,37 @@
-1
+Please see the diagram ( https://www.mermaidchart.com/raw/01b10bd9-069b-4b78-a203-419312c18a36?theme=dark&version=v0.1&format=svg )
+
+Explanation/Notes : When loading the initial traditional notes page and the single-page app (SPA), the process is largely similar. Both involve the browser making GET requests to the server for the necessary HTML, CSS, and JavaScript files. The server responds by providing these resources, enabling the browser to render the base page.
+
+The key difference is seen only when the user submits their "note" using the form in the SPA. We will explore this further in activity 0.6.
+
+***************************************************************************************************************************************************************************************************************************************************************************************************************************
+
+sequenceDiagram
+    participant browser
+    participant server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa
+    activate server
+    server-->>browser: HTML document
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    activate server
+    server-->>browser: the CSS file
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+    activate server
+    server-->>browser: the JavaScript file
+    deactivate server
+
+    Note right of browser: The browser starts executing the JavaScript code
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate server
+    server-->>browser: Initial JSON data for rendering
+    deactivate server
+
+    Note right of browser: The browser executes the JavaScript code to render the initial notes
+
+
