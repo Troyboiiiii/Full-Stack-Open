@@ -1,1 +1,20 @@
-Please see the diagram ()
+Please see the diagram ( https://www.mermaidchart.com/raw/b8a3ba3a-2d89-47c3-87ad-5f188dedeff1?theme=dark&version=v0.1&format=svg )
+
+Explanation/Notes: The key divergence occurs when the user interacts with the application. In the traditional approach, a new page is requested from the server, resulting in a full page reload (URL redirect). Conversely, in the SPA, user interactions, such as entering a new note, are handled asynchronously by the client-side JavaScript. This means that after the initial load, the user can perform actions without reloading the entire page, leading to a more dynamic and seamless user experience.
+
+
+********************************************************************************************************************************************************************************************************************************************************************************************************************
+
+sequenceDiagram
+    participant browser
+    participant server
+    participant user 
+
+    user->>browser: Interacts with UI (Writes and Saves a new note)
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    activate server
+    server-->>browser: Responds with updated JSON data
+    deactivate server
+
+    Note right of browser: The browser updates the UI without a full page reload
